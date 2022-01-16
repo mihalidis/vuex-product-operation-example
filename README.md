@@ -1,4 +1,5 @@
 # product-operations-vuex
+- This is a example project for learning vuex
 
 ## Project setup
 ```
