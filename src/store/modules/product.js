@@ -19,7 +19,7 @@ const mutations = {
 const actions = {
   // eslint-disable-next-line no-unused-vars
   saveProduct({ commit }, payload){
-    Vue.http.post("https://product-operations-vuex-default-rtdb.europe-west1.firebasedatabase.app/products.json", payload).then((res) => {
+    Vue.http.post(`${process.env.VUE_APP_DBURI}products.json`, payload).then((res) => {
       console.log(res);
     })
   },
