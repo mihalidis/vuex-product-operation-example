@@ -15,7 +15,7 @@
             </thead>
             <tbody>
             <tr v-for="(product, index) in productList" :key="index">
-              <td class="align-middle text-center"><span class="badge badge-info"> {{ index }} </span></td>
+              <td class="align-middle text-center"><span class="badge badge-info"> {{ product.id }} </span></td>
               <td class="align-middle text-center"> {{ product.name }} </td>
               <td class="align-middle text-center"> {{ product.count }} </td>
               <td style="width: 120px;"> {{ product.price }}</td>

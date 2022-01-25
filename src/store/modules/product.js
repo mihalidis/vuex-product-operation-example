@@ -18,10 +18,19 @@ const mutations = {
 
 const actions = {
   // eslint-disable-next-line no-unused-vars
-  saveProduct({ commit }, payload){
+  saveProduct({ commit, dispatch }, payload){
     Vue.http.post(`${process.env.VUE_APP_DBURI}products.json`, payload).then((res) => {
-      console.log(res);
-    })
+      commit("addProductToList", {
+        id: res.data.name,
+        ...payload
+      });
+
+      dispatch("setSaleInfo", {
+        purchase: payload.price,
+        sale: 0,
+        count: payload.count
+      })
+    });
   },
   sellProduct() {
 

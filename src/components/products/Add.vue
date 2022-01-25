@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
 export default {
   name: "Add",
   data() {
@@ -43,11 +42,7 @@ export default {
       }
     }
   },
-  mounted() {
-    console.log(process.env.DB_URI);
-  },
   methods: {
-    ...mapMutations(['addProductToList']),
     saveProduct() {
       if(this.product.name && this.product.count && this.product.price && this.product.description) {
         this.$store.dispatch("saveProduct", this.product);
