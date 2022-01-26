@@ -6,7 +6,12 @@ import { store } from "./store/store"
 
 Vue.use(VueResource);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+// {{ purchase | currency }}
+Vue.filter('currency', (value) => {
+  return parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 2 }) + ' €';
+});
 
 new Vue({
   router,

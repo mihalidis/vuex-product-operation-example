@@ -6,15 +6,15 @@
     <div class="footer-text-wrapper">
       <span class="navbar-text navbar-nav my-2 my-lg-0 mr-3">
         <strong>Alış Tutarı : </strong>
-        <span class="badge badge-danger">{{ getSaleInformation.purchaseAmount }}</span>
+        <span class="badge badge-danger">{{ getSaleInformation.purchaseAmount | currency }}</span>
     </span>
       <span class="navbar-text navbar-nav my-2 my-lg-0 mr-3">
         <strong>Satış Tutarı : </strong>
-        <span class="badge badge-success">{{ getSaleInformation.salesAmount }}</span>
+        <span class="badge badge-success">{{ getSaleInformation.salesAmount | currency }}</span>
     </span>
       <span class="navbar-text navbar-nav my-2 my-lg-0">
         <strong>Bakiye : </strong>
-        <span class="badge badge-primary">{{ getSaleInformation.balance }}</span>
+        <span class="badge badge-primary">{{ getSaleInformation.balance | currency }}</span>
     </span>
     </div>
 
@@ -22,12 +22,18 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Footer",
   computed: {
-    ...mapGetters(["getSaleInformation", "getProductList"]),
+    ...mapGetters(["getSaleInformation"]),
   },
+  mounted() {
+    this.getSaleInfo();
+  },
+  methods: {
+    ...mapActions(["getSaleInfo"])
+  }
 }
 </script>
 

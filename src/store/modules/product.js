@@ -26,8 +26,8 @@ const actions = {
       });
 
       dispatch("setSaleInfo", {
-        purchase: payload.price,
-        sale: 0,
+        purchaseAmount: payload.price,
+        salesAmount: 0,
         count: payload.count
       })
     });
