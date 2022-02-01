@@ -5,7 +5,7 @@
         <div class="card-body">
           <h3>Ürün Listesi</h3>
           <hr>
-          <table v-if="productList.length" class="table table-hover table-striped table-bordered">
+          <table v-if="list.length" class="table table-hover table-striped table-bordered">
             <thead>
             <th>id</th>
             <th>Ürün Adı</th>
@@ -14,8 +14,8 @@
             <th>Açıklama</th>
             </thead>
             <tbody>
-            <tr v-for="(product, index) in productList" :key="index">
-              <td class="align-middle text-center"><span class="badge badge-info"> {{ product.id }} </span></td>
+            <tr v-for="(product, index) in list" :key="index">
+              <td class="align-middle text-center"><span class="badge badge-info bg-success"> {{ product.id }} </span></td>
               <td class="align-middle text-center"> {{ product.name }} </td>
               <td class="align-middle text-center"> {{ product.count }} </td>
               <td style="width: 120px;"> {{ product.price }}</td>
@@ -36,14 +36,24 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 export default {
   name: "List",
   computed: {
     ...mapGetters(["getProductList"]),
-    productList() {
-      return this.getProductList;
+    list() {
+      if(this.getProductList) {
+        return this.getProductList;
+      }
+
+      return [];
     }
+  },
+  mounted() {
+    this.getProducts();
+  },
+  methods: {
+    ...mapActions(["getProducts"])
   }
 }
 </script>
