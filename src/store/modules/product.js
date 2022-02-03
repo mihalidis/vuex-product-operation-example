@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import {router} from "../../router";
 
 const state = {
   productList: []
@@ -39,8 +40,19 @@ const actions = {
         commit("addProductToList", changedList);
     });
   },
-  sellProduct() {
+  removeProduct({state, dispatch}, payload) {
+    // pass by reference & pass by value
+    let product = state.productList.filter(product => product.id === payload.id);
+    const totalCount = product[0].count - payload.count;
+    Vue.http.patch(`${process.env.VUE_APP_DBURI}products/${payload.id}.json`, {count : totalCount}).then(() => {
+      product[0].count = totalCount;
 
+      dispatch("setSaleInfo", {
+        purchaseAmount: 0,
+        salesAmount: product[0].price,
+        count: payload.count
+      })
+    }).then(router.replace("/"));
   }
 }
 
