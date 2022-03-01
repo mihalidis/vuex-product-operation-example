@@ -3,9 +3,7 @@
     <Header />
     <transition name="fade" mode="out-in">
       <router-view />
-      
     </transition>
-
     <Footer />
   </div>
 </template>
