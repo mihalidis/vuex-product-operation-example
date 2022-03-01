@@ -24,9 +24,11 @@ export default {
 .fade-enter{
   opacity: 0;
 }
+
 .fade-enter-active{
   transition: opacity .3s ease-out;
 }
+
 .fade-leave-active{
   transition: opacity .3s ease-out;
   opacity: 1;
